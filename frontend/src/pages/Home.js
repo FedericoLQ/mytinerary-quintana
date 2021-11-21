@@ -1,14 +1,19 @@
 import React from "react";
-
-
-
-
+import HeroVideo from "../components/Hero"
+import NavBar from "../components/NavBar";
+import SimpleSlider from "../components/SimpleSlider"
 
 class Home extends React.Component {
   render() {
-      
-    return <h1 className="m-5">MyTinerary</h1>;
+    return (
+      <div>        
+        <NavBar />
+        <HeroVideo/>
+        <SimpleSlider/>
+           
+      </div>
+    );
   }
 }
 
-export default Home
+export default Home;
