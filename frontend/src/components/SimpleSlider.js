@@ -24,7 +24,7 @@ export default class SimpleSlider extends Component {
         {
           breakpoint: 768,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             slidesToScroll: 1,
             slidesPerRow: 1,
             rows: 2,
@@ -38,17 +38,17 @@ export default class SimpleSlider extends Component {
       <Container fluid>
         <div className="carrusell">
           <Container className="containerCarrousel">
-            <h2 className="text-center bg-white p-2 border border-5 border-dark pb-3 mt-3 rounded-pill text-dark">Choose Your Destination</h2>
+            <h2 className="text-center bg- p-2 border border-5 border-white pb-2 mt-3 rounded-pill text-white">Fulfill Your Traveling <span>Dreams</span></h2>
             <Slider {...settings}>
               {Image.map((img, index) => {
                 return (
                   <div key={index}>
-                    <Card className="m-2 text-center">
+                    <Card className="m-2 border border-2 border-white bg-dark text-white  text-center">
                     <Card.Body>
                         <Card.Title className="fs-4">{`${img.name}`}</Card.Title>
                       </Card.Body>
                       <Card.Img
-                        className="cardImg rounded-3"
+                        className="cardImg rounded-0 border border-2 border-white"
                         variant="top"
                         src={`${img.src}`}
                       />
