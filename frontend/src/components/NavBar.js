@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import LogIcon from "../assets/logIcon.png";
+import {Link} from "react-router-dom"
 const NavBar = () => {
   return (
     <Navbar className="navBart" expand="lg">
@@ -11,7 +12,7 @@ const NavBar = () => {
           <Nav className="me-auto  navLink">
           <Dropdown>
               <Dropdown.Toggle
-                className="imgLogin"
+                className="imgLogin me-3"
                 variant="success"
                 id="dropdown-basic"
               >
@@ -23,8 +24,8 @@ const NavBar = () => {
                 <Dropdown.Item className="text-center ps-0 pe-0" href="#/action-1">Log In</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#home">Cities</Nav.Link>
+            <Nav.Link as={Link} to="/" className="active navLinks">Home</Nav.Link>
+            <Nav.Link eventKey={2} as={Link} to="/Cities" className="navLinks">Cities</Nav.Link>
             
            
            

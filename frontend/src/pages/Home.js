@@ -11,8 +11,7 @@ class Home extends React.Component {
         <NavBar />
         <HeroVideo/>
         <SimpleSlider/>
-        <Footer/>
-           
+        <Footer/>           
       </div>
     );
   }

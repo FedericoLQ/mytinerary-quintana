@@ -10,28 +10,30 @@ import Contact from "../assets/contact.png"
 
 const Footer = () => {
     return (
-        <div>
+       
             <footer >
-      <div>
-        <div class=" container-body">
-          <div class="colum2">
-            
-            <div class="d-flex redes">
-              <div class="iconos">
+     
+          <div class="colum2">           
+            <div class="redes">
+            <div className="footL">
+                 <Link as={Link} to="/" className="active footLinks">Home</Link>
+                 <Link eventKey={2} as={Link} to="/Cities" className="footLinks">Cities</Link>
+           
+                </div>
                 <div class="roww">                
                   <Link to="/"><img src={Facebook} alt="Logo Facebook"/></Link>
                   <Link to="/"><img src={Instagram} alt="Logo Instagram"/></Link>
                   <Link to="/"><img src={Youtube} alt="Logo Youtube"/></Link>
                   <Link to="/"><img src={Twitter} alt="Logo Twitter"/></Link>
                 </div>
-              </div>
+               
+              
             </div>
           </div>
                     
-        </div>
-      </div>
+      
     </footer>
-        </div>
+       
     )
 }
 

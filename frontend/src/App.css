@@ -148,6 +148,12 @@ span{
   }
 }
 
+.navLinks{
+  font-size: large;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+
 .button {
 	pointer-events: auto;
 	cursor: pointer;
@@ -237,3 +243,41 @@ span{
 	mix-blend-mode: difference;
 }
 
+
+
+/* FOOTER */
+
+.roww img {
+  width: 36px;
+  height: 36px;
+}
+
+
+
+.roww{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around
+}
+
+.colum2 {
+  max-width: 100%;
+  margin: 2rem;
+  
+}
+
+
+.footLinks{
+  font-size: large;
+  font-weight: bold;
+  margin: 1rem;
+  text-decoration: none;
+}
+
+.footL{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
