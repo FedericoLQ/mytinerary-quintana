@@ -19,7 +19,8 @@
 
 .texth1{
   font-size: 7rem;
- ;
+  margin-top: 10rem;
+  
 }
 
 @media (max-width: 768px) {
@@ -89,9 +90,6 @@ body{
   }
 }
 
-.text-choose{
-  border-style: solid 5rem rgb(255, 8, 8) !important;
-}
 
 .myLogo{
   width: 13rem;
@@ -247,21 +245,21 @@ span{
 
 /* FOOTER */
 
-.roww img {
+.imgFoot img {
   width: 36px;
   height: 36px;
 }
 
 
 
-.roww{
+.imgFoot{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around
+  justify-content: space-evenly
 }
 
-.colum2 {
+.colum {
   max-width: 100%;
   margin: 2rem;
   
@@ -273,11 +271,16 @@ span{
   font-weight: bold;
   margin: 1rem;
   text-decoration: none;
+  color: #e7e7e7;
+}
+
+.footLinks:hover{
+  color:rgb(255, 145, 0) !important;
 }
 
 .footL{
   display: flex;
-  flex-direction: row;
+  flex-direction: row;  
   flex-wrap: wrap;
   justify-content: center;
 }
