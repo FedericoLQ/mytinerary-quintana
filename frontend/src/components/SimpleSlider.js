@@ -38,7 +38,7 @@ export default class SimpleSlider extends Component {
       <Container fluid>
         <div className="carrusell">
           <Container className="containerCarrousel">
-            <h2 className="text-center bg- p-2 border border-5 border-white pb-2 mt-3 rounded-pill text-white">Fulfill Your Traveling <span>Dreams</span></h2>
+            <h2 className="text-center p-2 border border-5 border-white pb-2 mt-3 rounded-pill text-white">Fulfill Your Traveling <span>Dreams</span></h2>
             <Slider {...settings}>
               {Image.map((img, index) => {
                 return (

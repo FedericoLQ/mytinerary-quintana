@@ -11,6 +11,12 @@ const Hero = () => {
       <img src={MyLogo} alt="Logo Img" className="myLogo" />  
       <h1 className="text-center text-white texth1">MyTinerary</h1>
       <h2 className="mt-5 text-white text-center">Find your perfect trip, designed by insiders who knows and <span>Love</span> their cities!</h2>
+      <div>
+        <button className="button button--bestia mt-5">
+          <div className="button__bg"></div>
+          <span className="fs-3">Choose Your Destination!</span>
+        </button>
+      </div>
       </div>
     </div>
     </Container>
