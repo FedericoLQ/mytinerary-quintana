@@ -13,7 +13,7 @@ const Footer = () => {
        
             <footer >                   
             <div className="m-5 container-footer">
-            <div className="footL">
+             <div className="footL">
                  <Link as={Link} to="/" className="active footLinks">Home</Link>
                  <Link eventKey={2} as={Link} to="/Cities" className="footLinks">Cities</Link>
            
