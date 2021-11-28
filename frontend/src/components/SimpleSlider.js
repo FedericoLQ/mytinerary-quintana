@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Slider from "react-slick";
 import { Container } from "react-bootstrap";
-import Image from "./Img";
+// import Image from "./Img";
 import { Card } from "react-bootstrap";
 
 
@@ -13,7 +13,7 @@ const SimpleSlider = () => {
   useEffect(() => {
     fetch("http://localhost:4000/api/cities")
       .then((res) => res.json())
-      .then((data) => setCities(data.response.cities))
+      .then((data) => setCities(data.response))
       .catch((err) => console.error(err.message));
   }, []);
   const settings = {

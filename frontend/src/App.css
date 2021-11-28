@@ -284,3 +284,17 @@ span{
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.bottonBack{
+  border-radius: 8px;
+  text-decoration: none;
+  background-color: rgb(255, 145, 0);
+  transition: 1s;
+}
+
+.bottonBack:hover{
+  background-color: rgba(255, 145, 0, 0.226);
+  color: rgb(255, 145, 0) !important;
+  transition: .5s;
+  border: .1px solid rgba(155, 155, 155, 0.466) !important;
+}
