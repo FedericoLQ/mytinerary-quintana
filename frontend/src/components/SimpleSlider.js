@@ -53,21 +53,26 @@ const SimpleSlider = () => {
             <h2 className="text-center p-2 border pb-3 border-5 border-white pb-2 mt-3 rounded-pill text-white">Fulfill Your Traveling <span>Dreams</span></h2>
             <Slider {...settings}>
               {cities.map((img, index) => {
-                return (
-                  <div key={index}>
-                    <Card className="m-2 border border-2 border-white bg-dark text-white  text-center">
-                    <Card.Body>
-                        <Card.Title className="fs-4">{`${img.name}`}</Card.Title>
-                      </Card.Body>
-                      <Card.Img
-                        className="cardImg rounded-0 border border-2 border-white"
-                        variant="top"
-                        src={`${img.src}`}
-                      />
-                     
-                    </Card>
-                  </div>
-                );
+                if (index <= 11 ) {
+                  return (
+                  
+                    <div key={index}>
+                      <Card className="m-2 border border-2 border-white bg-dark text-white  text-center">
+                      <Card.Body>
+                          <Card.Title className="fs-4">{`${img.name}`}</Card.Title>
+                        </Card.Body>
+                        <Card.Img
+                          className="cardImg rounded-0 border border-2 border-white"
+                          variant="top"
+                          src={`${img.src}`}
+                        />
+                       
+                      </Card>
+                    </div>
+                  )
+                }
+               
+
               })} 
             </Slider>
           </Container>

@@ -1,7 +1,7 @@
 import React from "react";
 import CardCities from "../components/CardCities";
 import NavBar from "../components/NavBar"
-
+import Footer from "../components/Footer";
 
 
  class Cities extends React.Component {
@@ -9,9 +9,11 @@ import NavBar from "../components/NavBar"
     
      return(
       <div>
-      <NavBar/>  
-      <h1 className="text-white text-center">Ciudades</h1>   
+     
+      <NavBar/>
+                 
       <CardCities/>
+      <Footer/>  
      </div>
      )
    }

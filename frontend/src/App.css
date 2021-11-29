@@ -19,8 +19,7 @@
 
 .texth1{
   font-size: 7rem;
-  margin-top: 10rem;
-  
+    
 }
 
 @media (max-width: 768px) {
@@ -35,11 +34,9 @@
    ;
   }
 }
-.navBart{
-  position: absolute !important;
-  top: 0 !important;
+.navBart{  
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.424);
+  background-color: rgba(255, 255, 255, 0.424);  
   }
 
   @media (max-width: 768px) {
@@ -297,4 +294,16 @@ span{
   color: rgb(255, 145, 0) !important;
   transition: .5s;
   border: .1px solid rgba(155, 155, 155, 0.466) !important;
+}
+
+.cardCity{
+  text-decoration: none !important;
+}
+
+.inputSearch{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }

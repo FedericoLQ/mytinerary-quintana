@@ -16,7 +16,7 @@ const NavBar = () => {
                 variant="success"
                 id="dropdown-basic"
               >
-                {/* <img className="loginImg" src={LogIcon} alt="Img Login" /> */}
+              <img className="loginImg" src={LogIcon} alt="Img Login" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>

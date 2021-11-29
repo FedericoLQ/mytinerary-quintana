@@ -23,12 +23,14 @@ const citiesController = require('../controllers/citiesController')
 router
 .route('/cities')
 .get(citiesController.getAllCities)
-
+.post(citiesController.loadCity)
+// .put(citiesController.updateCity)
 
 
 
 router.route('/cities/:id')
 .get(citiesController.city)
-
+.delete(citiesController.deleteCity)
+.put(citiesController.updateCity)
 
 module.exports = router
