@@ -8,7 +8,7 @@ class Home extends React.Component {
   render() {
     return (
       <div>        
-        <NavBar />
+        <NavBar/>
         <HeroVideo/>
         <SimpleSlider/>
         <Footer/>           

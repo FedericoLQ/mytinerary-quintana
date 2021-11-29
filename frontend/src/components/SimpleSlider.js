@@ -48,7 +48,7 @@ const SimpleSlider = () => {
   return (
     
       <Container fluid>
-        <div className="carrusell">
+        <div >
           <Container className="containerCarrousel">
             <h2 className="text-center p-2 border pb-3 border-5 border-white pb-2 mt-3 rounded-pill text-white">Fulfill Your Traveling <span>Dreams</span></h2>
             <Slider {...settings}>

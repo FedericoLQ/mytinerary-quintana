@@ -29,15 +29,16 @@ const CardCities = () => {
     <div>
       <h1 className="text-white text-center">Cities</h1>
       <div className="inputSearch">
-        <input
+        <input className="text-center inSearch"
           type="text"
           ref={filter}
-          placeholder="Search"
+          placeholder=">>Search Your Destiny<<"
           onChange={filtering}
         />
       </div>
       <Container>
-        {loading.map((city) => (
+        
+        {loading.length > 0 ? loading.map((city) => (
           <>
             <Link className="cardCity" to={`/city/${city._id}`}>
               <Card className="m-2 border border-2 border-white bg-dark text-white  text-center">
@@ -52,7 +53,7 @@ const CardCities = () => {
               </Card>
             </Link>
           </>
-        ))}
+        ) ): <h2 className="text-center text-info m-2">Upss... we can't find what you are looking for</h2>}
       </Container>
     </div>
   );
