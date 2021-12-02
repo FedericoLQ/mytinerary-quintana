@@ -9,8 +9,10 @@ class Home extends React.Component {
     return (
       <div>        
         <NavBar/>
+        
         <HeroVideo/>
         <SimpleSlider/>
+        
         <Footer/>           
       </div>
     );

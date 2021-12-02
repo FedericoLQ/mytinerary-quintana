@@ -4,7 +4,7 @@ const itineraryController = {
     let itineraries;
     let error = null;
     try {
-      itineraries = await Itinerary.find();
+      itineraries = await Itinerary.find().populate('city');
     } catch (error) {
       error = error;
       console.error(error);
@@ -21,7 +21,7 @@ const itineraryController = {
     let itinerary;
     const id = req.params.id;
     try {
-      itinerary = await Itinerary.findOne({ _id: id });
+      itinerary = await Itinerary.findOne({ _id: id }).populate('city');
     } catch (error) {
       console.error(error);
     }
@@ -29,8 +29,8 @@ const itineraryController = {
   },
 
   loadItinerary: (req, res) => {
-    const { name, src, price, duration, likes, hashtag } = req.body;
-    new Itinerary({ name, src, price, duration, likes, hashtag })
+    const { name, src, price, duration, likes, hashtag, city } = req.body;
+    new Itinerary({ name, src, price, duration, likes, hashtag, city })
       .save()
       .then((response) => res.json({ response }));
   },

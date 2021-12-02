@@ -26,9 +26,10 @@ class City extends React.Component {
   render() {
     return (
       
-      <div>
+      <div className="d-flex flex-column">
         <NavBar/>
-        {this.state.city && (
+        <div className="flex-grow-1">
+        {this.state.city && ( //Cuando encuentra el valor lo renderiza 
           <div key={this.state.city.name}>
             {/* <h2 className="text-white text-center">{this.state.city.name}</h2>
             <img src={`${this.state.city.src}`} alt="Img City" />             */}
@@ -54,6 +55,7 @@ class City extends React.Component {
             </div>
           </div>
         )}
+        </div>
         <Footer/>  
       </div>
     );

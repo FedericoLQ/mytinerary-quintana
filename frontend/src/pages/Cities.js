@@ -8,11 +8,12 @@ import Footer from "../components/Footer";
    render() {
     
      return(
-      <div>
+      <div >
      
       <NavBar/>
-                 
+      <div >
       <CardCities/>
+      </div>
       <Footer/>  
      </div>
      )

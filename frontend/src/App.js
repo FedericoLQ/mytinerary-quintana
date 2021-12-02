@@ -7,8 +7,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Cities from './pages/Cities';
 import CityPageSinProps from './pages/City'
 import { withRouter } from './utils/withRouter'  
- 
-
 const City = withRouter(CityPageSinProps)
 
 
