@@ -29,7 +29,7 @@ const itineraryController = {
   },
 
   loadItinerary: (req, res) => {
-    const { userName, imgUser, description, imgCity, price, duration, likes, hashtag, comments, city } = req.body;
+    const { userName, imgUser, imgCity, price, duration, likes, hashtag, comments, city } = req.body;
     new Itinerary({ userName, imgUser, description, imgCity, price, duration, likes, hashtag, comments, city })
       .save()
       .then((response) => res.json({ response }));
@@ -53,7 +53,7 @@ const itineraryController = {
     console.log(itinerary);
 
     try {
-      updateI = await Itinerary.findOneAndUpdate({ _id: id }, city, {
+      updateI = await Itinerary.findOneAndUpdate({ _id: id }, itinerary, {
         new: true,
       });
       console.log(updateI);
