@@ -29,8 +29,8 @@ const itineraryController = {
   },
 
   loadItinerary: (req, res) => {
-    const { name, src, price, duration, likes, hashtag, city } = req.body;
-    new Itinerary({ name, src, price, duration, likes, hashtag, city })
+    const { userName, imgUser, description, imgCity, price, duration, likes, hashtag, comments, city } = req.body;
+    new Itinerary({ userName, imgUser, description, imgCity, price, duration, likes, hashtag, comments, city })
       .save()
       .then((response) => res.json({ response }));
   },
@@ -61,6 +61,17 @@ const itineraryController = {
       console.error(error);
     }
     res.json({ response: updateI ? true : false });
+  },
+
+  itineraryByCity: async (req, res) => {
+    let itineraries;
+    const id = req.params.id;
+    try {
+      itineraries = await Itinerary.find({ city: id }).populate('city');
+    } catch (error) {
+      console.error(error);
+    }
+    res.json({ response: itineraries, success: true });
   },
 };
 

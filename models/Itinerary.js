@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 
 const itinerarySchema = new mongoose.Schema({
-    name:{type:String, required:true}, 
-    src: {type:String},
+    userName:{type:String, required:true}, 
+    imgUser: {type:String},
+    description: {type:String},
+    imgCity: {type:String},
     price: {type:Number},
     duration: {type:Number},
     likes: {type:Number},

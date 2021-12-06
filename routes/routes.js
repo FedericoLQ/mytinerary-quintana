@@ -27,4 +27,7 @@ router.route('/itinerary/:id')
 .delete(itineraryController.deleteItinerary)
 .put(itineraryController.updateItinerary)
 
+router.route('/itinerary/city/:id')
+.get(itineraryController.itineraryByCity)
+
 module.exports = router

@@ -1,6 +1,7 @@
 const initialState = {
     cities: [],
     auxiliary: [],
+    itinerary: [],
     city: {}
 }
 
@@ -22,6 +23,11 @@ const citiesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cities: filtrado
+            }
+        case 'requestItineraries':
+            return {
+                ...state,
+                itinerary: action.payload
             }
 
         default: return state
