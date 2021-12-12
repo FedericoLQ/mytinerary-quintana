@@ -58,10 +58,10 @@ class City extends React.Component {
                         <h1>{itinerary.userName}</h1>
                         <div className="ContenedorTextoTotal">
                           <p className="Strong">
-                            Descripcion: {itinerary.description}
+                            Description: {itinerary.description}
                           </p>
                           <p className="Strong">Duration: {"⏱".repeat(itinerary.duration)}</p>
-                          <p className="Strong">Precio: {"💸".repeat(itinerary.price)}</p>
+                          <p className="Strong">Price: {"💸".repeat(itinerary.price)}</p>
                           <div className="DisplayIcons">
                             <FavoriteBorderIcon sx={{ fontSize: 30 }} />
                             <p>{itinerary.hashtag}</p>

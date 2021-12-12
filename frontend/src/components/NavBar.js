@@ -20,8 +20,8 @@ const NavBar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item className="text-center ps-0 pe-0" href="#/action-1">Sign Up</Dropdown.Item>
-                <Dropdown.Item className="text-center ps-0 pe-0" href="#/action-1">Log In</Dropdown.Item>
+                <Dropdown.Item className="text-center ps-0 pe-0" href="/SignUp">Sign Up</Dropdown.Item>
+                <Dropdown.Item className="text-center ps-0 pe-0" href="/SignIn">Sing In</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Nav.Link as={Link} to="/" className="active navLinks">Home</Nav.Link>

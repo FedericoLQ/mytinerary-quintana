@@ -1,4 +1,6 @@
 const Itinerary = require("../models/itinerary");
+
+
 const itineraryController = {
   getAllItinerary: async (req, res) => {
     let itineraries;

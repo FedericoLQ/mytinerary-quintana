@@ -1,8 +1,13 @@
 const express = require('express')
 
+const validator = require("../config/validator")
+
 const router = express.Router()
 const citiesController = require('../controllers/citiesController')
 const itineraryController = require('../controllers/itineraryController')
+
+const userController = require('../controllers/userController')
+
 router
 .route('/cities')
 .get(citiesController.getAllCities)
@@ -29,5 +34,10 @@ router.route('/itinerary/:id')
 
 router.route('/itinerary/city/:id')
 .get(itineraryController.itineraryByCity)
+
+router.route('/user/signin')
+    .post(userController.signin)
+router.route('/user/signup')
+    .post(validator, userController.addUser)
 
 module.exports = router
