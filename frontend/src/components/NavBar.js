@@ -2,7 +2,12 @@ import React from "react";
 import { Navbar, Nav, Dropdown, Container } from "react-bootstrap";
 import LogIcon from "../assets/logIcon.png";
 import {Link} from "react-router-dom"
-const NavBar = () => {
+import userActions from "../redux/actions/userActions";
+import { connect } from "react-redux";
+
+
+const NavBar = (props) => {
+  console.log(props.userlog);
   return (
     <Navbar className="navBart" expand="lg">
       <Container fluid>
@@ -20,8 +25,11 @@ const NavBar = () => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item className="text-center ps-0 pe-0" href="/SignUp">Sign Up</Dropdown.Item>
-                <Dropdown.Item className="text-center ps-0 pe-0" href="/SignIn">Sing In</Dropdown.Item>
+                {props.userlog ? <Dropdown.Item onClick={() => props.userlogmd()} className="text-center ps-0 pe-0">Log Out</Dropdown.Item>
+                :<><Dropdown.Item className="text-center ps-0 pe-0" href="/SignUp">Sign Up</Dropdown.Item>
+                   <Dropdown.Item className="text-center ps-0 pe-0" href="/SignIn">Sing In</Dropdown.Item> 
+                  </>
+                }
               </Dropdown.Menu>
             </Dropdown>
             <Nav.Link as={Link} to="/" className="active navLinks">Home</Nav.Link>
@@ -36,4 +44,16 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+
+const mapDispatchToProps = {
+  userlogmd: userActions.LogOut,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    userlog: state.userReducer.userlog
+  
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

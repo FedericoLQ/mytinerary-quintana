@@ -76,6 +76,16 @@ const userActions = {
       }
     };
   },
+
+  LogOut: () => {
+    
+    return (dispatch) =>{
+      localStorage.clear()
+      dispatch({
+        type: "logout",
+      })
+    }
+  }
 };
 
 export default userActions;

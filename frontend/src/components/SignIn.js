@@ -58,13 +58,14 @@ const SingIn = (props) => {
           />
         </Form.Group>
         <div className="d-flex justify-content-around">
-          <Button className="" variant="warning" type="submit">
+          <Button className="btnLog" variant="warning" type="submit">
             Sign In
           </Button>
           {/* <Google />  */}
           <GoogleLogin
+            className="bg-warning color-black googlelink"
             clientId="1079226912737-0jfnjel6vj30sf15ktu3vvg0d1fum3f5.apps.googleusercontent.com"
-            buttonText="Sign up"
+            buttonText="Sign With  Google"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
