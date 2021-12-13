@@ -45,7 +45,7 @@ class City extends React.Component {
                 {/* {this.props.itinerary.length > 0  ? this.props.itinerary.map(itinerary => { */}
                 {this.props.itinerary && this.props.itinerary.map(itinerary => {
                   return(
-                  <div className="CardPositionRelative mb-5">
+                  <div key="city" className="CardPositionRelative mb-5">
                     <div className="CardPositionAbsoluteBack">
                       <img src={itinerary.imgCity} alt="Img City"></img>
                     </div>

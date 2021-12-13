@@ -21,7 +21,7 @@ const CardCities = ({ getCities, cities, filter, auxiliary }) => {
           cities &&
             cities.map((city) => (
               <>
-                <Link className="cardCity" to={`/city/${city._id}`}>
+                <Link key="cities" className="cardCity" to={`/city/${city._id}`}>
                   <Card className="m-2 border border-2 border-white mb-5 bg-dark text-white text-center">
                     <Card.Body>
                       <Card.Title className="cardCity fs-4">{`${city.name}`}</Card.Title>

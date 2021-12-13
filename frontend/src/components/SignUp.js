@@ -1,24 +1,43 @@
 import React, { useRef, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Google from "../components/Google";
+import GoogleLogin from "react-google-login";
 
 const SignUp = (props) => {
   const userName = useRef();
   const lastName = useRef();
   const email = useRef();
   const password = useRef();
-  
+
   const imgUrl = useRef();
-  const [country, setCountry] = useState()   
-  
-  
+  const [country, setCountry] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
- 
-    props.newU({email:email.current.value, password:password.current.value, userName:userName.current.value, lastName:lastName.current.value, imgUrl:imgUrl.current.value, country:country});
+
+    props.newU({
+      email: email.current.value,
+      password: password.current.value,
+      userName: userName.current.value,
+      lastName: lastName.current.value,
+      imgUrl: imgUrl.current.value,
+      country: country,
+    });
     // console.log(userName.current.value);
-    
+  };
+
+  const responseGoogle = (response) => {
+    // console.log(response);
+    props.newU({
+      email: response.profileObj.email,
+      password: response.profileObj.googleId,
+      google: true,
+      lastName: response.profileObj.familyName,
+      userName: response.profileObj.givenName,
+      imgUrl: response.profileObj.imageUrl,
+      country:'default country gilipollas'
+    });
   };
 
   return (
@@ -53,7 +72,6 @@ const SignUp = (props) => {
         <Form.Group
           className="d-flex flex-column align-items-center mb-3"
           controlId="formBasicEmail"
-          
         >
           <Form.Control
             className="w-75 text-center"
@@ -108,9 +126,15 @@ const SignUp = (props) => {
           <Button className="" variant="warning" type="submit">
             Create Account
           </Button>
-          <Button className="" variant="warning" type="submit">
-            Sign Up with Google
-          </Button>
+
+          {/* <Google />  */}
+          <GoogleLogin
+            clientId="1079226912737-0jfnjel6vj30sf15ktu3vvg0d1fum3f5.apps.googleusercontent.com"
+            buttonText="Sign up"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
         </div>
       </Form>
       ;

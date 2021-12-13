@@ -1,5 +1,5 @@
 const initialState = {
-   usuario: {},
+    usuario: {},
    imgUrl:{}
 }
 
@@ -9,7 +9,7 @@ const userReducers = (state = initialState, action) => {
         case 'usuario':
             return {
                 ...state,
-                usuario: action.payload.userName,
+                usuario: action.payload.usuario,
                 imgUrl: action.payload.imgUrl
             }
         default:
