@@ -1,9 +1,9 @@
 import React from "react";
-import axios from "axios";
+
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
-import { Card, Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import citiesActions from "../redux/actions/citiesActions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -16,7 +16,7 @@ class City extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+   
     return (
       <div className="d-flex flex-column">
         <NavBar />

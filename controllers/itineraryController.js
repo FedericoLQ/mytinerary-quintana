@@ -52,13 +52,13 @@ const itineraryController = {
     let id = req.params.id;
     let itinerary = req.body;
     let updateI;
-    console.log(itinerary);
+    
 
     try {
       updateI = await Itinerary.findOneAndUpdate({ _id: id }, itinerary, {
         new: true,
       });
-      console.log(updateI);
+      
     } catch (error) {
       console.error(error);
     }

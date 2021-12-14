@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Google from "../components/Google";
+
 import GoogleLogin from "react-google-login";
 
 const SignUp = (props) => {
@@ -24,11 +24,11 @@ const SignUp = (props) => {
       imgUrl: imgUrl.current.value,
       country: country,
     });
-    // console.log(userName.current.value);
+  
   };
 
   const responseGoogle = (response) => {
-    // console.log(response);
+   
     props.newU({
       email: response.profileObj.email,
       password: response.profileObj.googleId,
@@ -36,7 +36,7 @@ const SignUp = (props) => {
       lastName: response.profileObj.familyName,
       userName: response.profileObj.givenName,
       imgUrl: response.profileObj.imageUrl,
-      country:'default country gilipollas'
+      country:'Far Far Away'
     });
   };
 
@@ -56,17 +56,25 @@ const SignUp = (props) => {
           controlId="formBasicText"
         >
           <Form.Control
-            className="w-75 text-center mb-3"
+            className="w-75 text-center"
             type="text"
             placeholder="First Name"
             ref={userName}
           />
+          {props.errors.userName && <p className="pForm fw-bold">{props.errors.userName}</p> }
+          
+          
+        <Form.Group
+          className="d-flex flex-column align-items-center mb-3"
+          controlId="formBasicText"
+        ></Form.Group>
           <Form.Control
             className="w-75 text-center"
             type="text"
             placeholder="Last Name"
             ref={lastName}
           />
+           {props.errors.lastName && <p className="pForm fw-bold">{props.errors.lastName}</p> }
         </Form.Group>
 
         <Form.Group
@@ -79,10 +87,11 @@ const SignUp = (props) => {
             placeholder="Enter email"
             ref={email}
           />
+           {props.errors.email && <p className="pForm fw-bold">{props.errors.email}</p> }
         </Form.Group>
 
         <Form.Group
-          className=" d-flex flex-column align-items-center"
+          className=" d-flex flex-column align-items-center mb-3"
           controlId="formBasicPassword"
         >
           <Form.Control
@@ -91,9 +100,8 @@ const SignUp = (props) => {
             placeholder="Password"
             ref={password}
           />
-          <Form.Text className="text-muted mt-0">
-            min. 6 chararcters and at least 1 letter and 1 number
-          </Form.Text>
+           {props.errors.password && <p className="pForm fw-bold">{props.errors.password}</p> }
+         
         </Form.Group>
         <Form.Group
           className="mb-3 d-flex flex-column align-items-center"
@@ -111,15 +119,17 @@ const SignUp = (props) => {
               </option>
             ))}
           </Form.Select>
+          {props.errors.country && <p className="pForm fw-bold">{props.errors.country}</p> }
         </Form.Group>
 
-        <Form.Group className="mb-1 d-flex flex-column align-items-center">
+        <Form.Group className="mb-1 d-flex flex-column align-items-center mb-3">
           <Form.Control
-            className="w-75 text-center mb-3"
+            className="w-75 text-center "
             type="text"
             placeholder="Perfil Picture URL Link"
             ref={imgUrl}
           ></Form.Control>
+          {props.errors.imgUrl && <p className="pForm fw-bold">{props.errors.imgUrl}</p> }
         </Form.Group>
 
         <div className="d-flex justify-content-around">

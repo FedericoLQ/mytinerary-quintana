@@ -10,14 +10,14 @@ const userActions = {
         if (user.data.success && !user.data.error) {
           localStorage.setItem("token", user.data.response.token);
           dispatch({
-            type: "usuario",
+            type: "userI",
             payload: {
-                usuario: user.data.response.userName,
+                userI: user.data.response.userName,
               imgUrl: user.data.response.imgUrl,
             },
           });
         } else {
-          return { issues: [{ message: user.data.error }] };
+          return { issues: user.data };
         }
       } catch (error) {
         console.log(error);
@@ -27,20 +27,19 @@ const userActions = {
   signIn: (email, password, google) => {
     return async (dispatch, getState) => {
       try {
-        // console.log(email, password);
+       
         const user = await axios.post("http://localhost:4000/api/user/signin", {
           email,
           password,
           google,
         });
-        console.log(user);
         if (user.data.success && !user.data.error) {
           localStorage.setItem("token", user.data.response.token);
 
           dispatch({
-            type: "usuario",
+            type: "userI",
             payload: {
-                usuario: user.data.response.userName,
+                userI: user.data.response.userName,
               imgUrl: user.data.response.imgUrl,
             },
           });
@@ -49,7 +48,8 @@ const userActions = {
             imgUrl: user.data.response.imgUrl,
           };
         } else {
-          alert(user.data.error);
+          console.log(user.data);
+         return {error:user.data.error};
         }
       } catch (error) {
         console.error(error);
@@ -64,9 +64,9 @@ const userActions = {
           headers: { Authorization: "Bearer " + token },
         });
         dispatch({
-          type: "usuario",
+          type: "userI",
           payload: {
-            usuario: user.data.response.userName,
+            userI: user.data.response.userName,
             imgUrl: user.data.response.imgUrl,
           },
         });

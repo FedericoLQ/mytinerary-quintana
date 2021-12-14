@@ -12,7 +12,7 @@ const userControllers = {
       if (userExists) {
         res.json({
           success: false,
-          error: "El email ya esta en uso",
+          error: "The email is already in use",
           response: null,
         });
       } else {
@@ -29,7 +29,7 @@ const userControllers = {
         });
         await newUser.save();
         const token = jwt.sign({ ...newUser }, process.env.SECRET_KEY);
-        res.json({ success: true, response: { newUser, token }, error: null });
+        res.json({ success: true, response: {  userName, imgUrl, token }, error: null });
       }
     } catch (error) {
       res.json({ success: false, response: null, error: error });
@@ -37,17 +37,21 @@ const userControllers = {
   },
   signin: async (req, res) => {
     const { email, password, google } = req.body;
-
+  
+    if(!email || !password) return res.json({
+            success: false,
+            error: "All fields have to be filled",
+          }); 
     try {
       const userExists = await User.findOne({ email });
-      if (userExists.google && !google)
-        return res.json({
-          success: false,
-          error: " email y/o contraseña incorrectos",
-        });
       if (!userExists) {
         res.json({ success: true, error: "Email and/or password incorrect" });
       } else {
+        if (userExists.google && !google)
+          return res.json({
+            success: false,
+            error: " Email and/or password incorrect",
+          });
         let samePass = bcryptjs.compareSync(password, userExists.password);
         if (samePass) {
           const { userName, imgUrl } = userExists;
@@ -62,6 +66,7 @@ const userControllers = {
         }
       }
     } catch (error) {
+      console.log(error);
       res.json({ success: false, response: null, error: error });
     }
   },

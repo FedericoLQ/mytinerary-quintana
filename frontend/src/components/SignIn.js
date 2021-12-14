@@ -10,11 +10,11 @@ const SingIn = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    props.signIn(email.current.value, password.current.value);
+    props.signIn(email.current.value, password.current.value,false);
   };
-
+ 
   const responseGoogle = (response) => {
-    console.log(response);
+   
     props.signIn( response.profileObj.email,
        response.profileObj.googleId,
       true,

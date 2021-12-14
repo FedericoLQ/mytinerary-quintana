@@ -58,11 +58,11 @@ const citiesController = {
     let id = req.params.id
     let city = req.body
     let updateC
-    console.log(city);
+    
     
     try{
        updateC = await City.findOneAndUpdate({_id:id},city,{new:true})
-       console.log(updateC)
+      
       }catch(error){
        console.error(error)
    }

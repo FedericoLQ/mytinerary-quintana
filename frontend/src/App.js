@@ -35,15 +35,20 @@ function App(props) {
         <Route path="/" element={<Home />}></Route>
         <Route path="/Cities" element={<Cities />}></Route>
         <Route path="/City/:id" element={<City />}></Route>
-        <Route path="/SignIn" element={<SignIn />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
+        {props.user === ''  && (
+          <>
+            <Route path="/SignIn" element={<SignIn />}></Route>
+            <Route path="/SignUp" element={<SignUp />}></Route>
+          </>
+        )}
+        <Route path="*" element={<Home />} />
       </Routes>
     </BrowserRouter>
   );
 }
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducer.usuario,
+    user: state.userReducer.userI,
   };
 };
 
