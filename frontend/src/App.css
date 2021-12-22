@@ -549,3 +549,23 @@ form {
   color: rgb(200, 80, 0) !important;;
     
 }
+
+.btn-it{
+  
+}
+
+.btn-it:hover{
+  letter-spacing: 11px;
+  color: white;
+}
+
+.accordion-button{
+  background-color:rgba(0, 0, 0, 0.739) !important;
+  color: #e7e7e7 !important;
+}
+
+.bLikes{
+  background-color: rgba(240, 255, 255, 0);
+  border: none;
+  margin-right: 0.5rem;
+}

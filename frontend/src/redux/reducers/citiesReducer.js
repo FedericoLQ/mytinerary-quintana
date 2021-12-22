@@ -29,7 +29,12 @@ const citiesReducer = (state = initialState, action) => {
                 ...state,
                 itinerary: action.payload
             }
+        case 'likes':
+            return{
+            ...state,
+            itinerary: state.itinerary.map(itinerary => itinerary._id === action.payload.idI ? {...itinerary, likes:action.payload.likes} : itinerary )
 
+        }    
         default: return state
     }
 }

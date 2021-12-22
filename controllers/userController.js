@@ -1,4 +1,3 @@
-
 const User = require("../models/User");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -28,8 +27,13 @@ const userControllers = {
           google,
         });
         await newUser.save();
+        const {_id} = newUser
         const token = jwt.sign({ ...newUser }, process.env.SECRET_KEY);
-        res.json({ success: true, response: {  userName, imgUrl, token }, error: null });
+        res.json({
+          success: true,
+          response: { userName, imgUrl, token, _id },
+          error: null,
+        });
       }
     } catch (error) {
       res.json({ success: false, response: null, error: error });
@@ -37,11 +41,12 @@ const userControllers = {
   },
   signin: async (req, res) => {
     const { email, password, google } = req.body;
-  
-    if(!email || !password) return res.json({
-            success: false,
-            error: "All fields have to be filled",
-          }); 
+
+    if (!email || !password)
+      return res.json({
+        success: false,
+        error: "All fields have to be filled",
+      });
     try {
       const userExists = await User.findOne({ email });
       if (!userExists) {
@@ -54,11 +59,13 @@ const userControllers = {
           });
         let samePass = bcryptjs.compareSync(password, userExists.password);
         if (samePass) {
-          const { userName, imgUrl } = userExists;
+          const { userName, imgUrl,_id } = userExists;
           const token = jwt.sign({ ...userExists }, process.env.SECRET_KEY);
+          console.log(token);
+
           res.json({
             success: true,
-            response: { userName, imgUrl, token },
+            response: { userName, imgUrl, token,_id },
             error: null,
           });
         } else {

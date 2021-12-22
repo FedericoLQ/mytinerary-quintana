@@ -14,8 +14,11 @@ const userActions = {
             payload: {
                 userI: user.data.response.userName,
               imgUrl: user.data.response.imgUrl,
+              userId:user.data.response._id
             },
+
           });
+          return {success:true}
         } else {
           return { issues: user.data };
         }
@@ -27,7 +30,8 @@ const userActions = {
   signIn: (email, password, google) => {
     return async (dispatch, getState) => {
       try {
-       
+        
+
         const user = await axios.post("http://localhost:4000/api/user/signin", {
           email,
           password,
@@ -41,6 +45,7 @@ const userActions = {
             payload: {
                 userI: user.data.response.userName,
               imgUrl: user.data.response.imgUrl,
+              userId:user.data.response._id
             },
           });
           return {
@@ -68,6 +73,7 @@ const userActions = {
           payload: {
             userI: user.data.response.userName,
             imgUrl: user.data.response.imgUrl,
+            userId:user.data.response._id
           },
         });
         return { response: user.data.response };

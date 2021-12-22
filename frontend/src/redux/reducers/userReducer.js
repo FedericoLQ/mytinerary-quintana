@@ -1,6 +1,7 @@
 const initialState = {
-  userI: '',
-  imgUrl: '',
+  userI: "",
+  imgUrl: "",
+  userId: "",
 };
 
 const userReducers = (state = initialState, action) => {
@@ -10,14 +11,15 @@ const userReducers = (state = initialState, action) => {
         ...state,
         userI: action.payload.userI,
         imgUrl: action.payload.imgUrl,
+        userId: action.payload.userId,
       };
-      case "logout": return{
-          ...initialState
-      }
+    case "logout":
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }
 };
-
 
 export default userReducers;
