@@ -121,7 +121,8 @@ const itineraryController = {
       const objComment = {
         user: req.user._id,
         text: req.body.text,
-        imgUrl: req.user.imgUrl
+        imgUrl: req.user.imgUrl,
+        userI: req.user.userName
       };
       itinerary.comments.unshift(objComment);
       await itinerary.save();
@@ -134,15 +135,15 @@ const itineraryController = {
   updateComment: async (req, res) => {
     let id = req.params.id;
     const commentId = req.params.commentID;
-    const cuerpo = req.body;
+    const bodyX = req.body;
 
     try {
       const itinerary = await Itinerary.findOne({ _id: id });
       const comment = itinerary.comments.find(
         (comment) => comment._id.toString() === commentId
       );
-      console.log(comment, cuerpo);
-      comment.text = cuerpo.text;
+      console.log(comment, bodyX);
+      comment.text = bodyX.text;
 
       await itinerary.save();
 

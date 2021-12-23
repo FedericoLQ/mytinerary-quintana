@@ -470,10 +470,13 @@ span{
   font-family: 'Josefin Sans', sans-serif;
   font-size: larger;
   border-radius: 5rem;
-  
+  }
 
-  
-}
+.fontInput{
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: larger;
+  padding-left: .3rem;
+}  
 
 
 form {
@@ -568,4 +571,91 @@ form {
   background-color: rgba(240, 255, 255, 0);
   border: none;
   margin-right: 0.5rem;
+  
+}
+.bgIcon {
+  background-color: rgba(240, 255, 255, 0);
+  border: none;
+  margin-right: 0.5rem;
+  
+}
+
+.activities {
+  display:flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 1rem;
+}
+
+.activityPic {
+  background-position: center;
+  background-size: cover;
+  width: 15rem;
+  height: 20rem;
+  border-radius: 10px;
+}
+
+.activity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.activitiesContainer {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
+.comments {
+  background-color: rgb(243, 188, 59);
+  border-radius: 5px;
+  width: 100%;
+  height: 9rem;
+  overflow-y: auto;
+}
+
+.formComments{
+  display: flex!important;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.inComment{
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+}
+
+.inComment h4{
+  margin-bottom: 0 !important;
+}
+
+.commentsTop{
+  border-top-style: outset;
+}
+.textColor{
+  color: #ff3300a6;
+}
+
+.textBg{
+  background-color: #ff3300a6;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: .5rem;
+    font-size: 2vmin;   
+}
+
+.inComment p{
+  margin-bottom: 0;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.accordion-body{
+  background: rgba(83, 57, 1, 0.15) !important;
 }

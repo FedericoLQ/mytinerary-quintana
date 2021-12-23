@@ -53,7 +53,7 @@ const userActions = {
             imgUrl: user.data.response.imgUrl,
           };
         } else {
-          console.log(user.data);
+        
          return {error:user.data.error};
         }
       } catch (error) {

@@ -1,78 +1,202 @@
-import React,{useRef,useState,useEffect} from 'react'
-import { connect } from 'react-redux'
-import citiesActions from '../redux/actions/citiesActions'
-import axios from 'axios'
+import React, { useRef, useState, useEffect } from "react";
+import { connect } from "react-redux";
+import citiesActions from "../redux/actions/citiesActions";
+import activitiesActions from "../redux/actions/activitiesActions";
+import Activity from "./Activity";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Comment = (props) => {
-    const text = useRef()
-    const textUpdate = useRef()
-    const [comments, setComments] = useState([])
-    const [edit, setEdit] = useState({commentId:'',flag:false})
+  const text = useRef();
+  const textUpdate = useRef();
+  const [comments, setComments] = useState([]);
+  const [edit, setEdit] = useState({ commentId: "", flag: false });
+  const [activities, setActivities] = useState([]);
 
-    useEffect(() => {
-        async function handlerComments(idItinerary) {
-            const res = await axios.get(`http://localhost:4000/api/comments/itinerary/${idItinerary}`)
-            setComments(res.data.comments)
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        handlerComments(props.itineraryID)
-    }, [props.itineraryID])
-
-
-    const handlerSubmit = async (e) => {
-        e.preventDefault()
-        const res = await props.addComment(props.itineraryID,  text.current.value, props.imgUser )
-        console.log(res.comments);
-        if (res.succes) {
-            setComments(res.comments)
-        } else {
-            console.log('usuario no logeado');
-
-        }
+  useEffect(() => {
+    async function handlerComments(idItinerary) {
+      const res = await axios.get(
+        `http://localhost:4000/api/comments/itinerary/${idItinerary}`
+      );
+      setComments(res.data.comments);
     }
 
-    return (
-        <div>
-            <h2>Leave a comment</h2>
-            <form onSubmit={handlerSubmit}>
-                <textarea type='text' cols="30" rows='5' placeholder="create a comment" ref={text} />
-                <input style={{ cursor: 'pointer' }} type="submit" />
-            </form>
-            <div>
-                { comments.length > 0 && comments.map(comment => <div key={comment._id}>
-                    <div style={{ display: 'flex' }}>
-                        {!edit.flag &&<> <h2 style={{ marginRight: '1rem' }}>{comment.text}</h2><img height='50px' alt='user img' style={{borderRadius:'50%'}} src={comment.imgUrl}/></>}
-                        {edit.flag && ((comment._id !== edit.commentId)||comment.user !== props.idUserLogged) && <h2 style={{ marginRight: '1rem' }}>{comment.text}</h2>}
-                        {(edit.flag && (comment._id === edit.commentId)) && <><input ref={textUpdate} type='text' defaultValue={comment.text} style={{ marginRight: '1rem' }}></input> <button style={{ cursor: 'pointer' }} onClick={async () => {
-                            const updatedComments = await props.updateComment(props.itineraryID, comment._id, textUpdate.current.value)
-                            setComments(updatedComments.comments)
-                            setEdit({flag:false})
-                        }}>update</button></>}
+    handlerComments(props.itineraryID);
+  }, [props.itineraryID]);
 
-                        {(localStorage.getItem('token') && comment.user === props.idUserLogged) && <button style={{ color:'blue',cursor: 'pointer' }} onClick={async () => {
-                            const updateComments = await props.deleteComment(props.itineraryID, comment._id)
-                            setComments(updateComments.comments)
-                        }}>x</button>}
-                        {(localStorage.getItem('token') && comment.user === props.idUserLogged) && <button style={{ cursor: 'pointer' }} onClick={() => {
-                            setEdit({commentId:comment._id,flag:true})
-                        }}>u</button>}
-                    </div>
-                </div>)}
-                {comments.length <= 0 && <h2>No comments yet</h2>}
-            </div>
+  useEffect(() => {
+    props.getActivitiesByItinerary(props.itineraryID).then((res) => {
+      setActivities(res);
+    });
+  }, [props]);
+
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    const res = await props.addComment(
+      props.itineraryID,
+      text.current.value,
+      props.imgUser,
+      props.userI
+    );
+    console.log(res.comments);
+    if (res.succes) {
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "¡commented!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setComments(res.comments);
+    } else {
+      Swal.fire({
+        position: "top-center",
+        icon: "warning",
+        title: res.error,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  return (
+    <div>
+      <div className="activitiesContainer">
+        <h4>Activities</h4>
+        <div className="activities">
+          {activities.map((activities) => (
+            <Activity Activities={activities} key={activities._id} />
+          ))}
         </div>
-    )
-}
+      </div>
+      <h2 className="text-center commentsTop">Comments</h2>
+
+      <div className="comments">
+          
+        {comments.length > 0 &&
+          comments.map((comment) => (
+            <div key={comment._id}>
+              <div className="inComment">
+                {!edit.flag && (
+                  <>
+                 
+                    <img
+                      height="50px"
+                      alt="user img"
+                      className="m-2"
+                      style={{ borderRadius: "50%" }}
+                      src={comment.imgUrl}
+                    />{" "}
+                    <div>
+                     <p>{props.userI}</p>
+                    <h4 className="textBg" style={{ marginRight: "1rem" }}>{comment.text}</h4>
+                    </div>
+                  </>
+                )}
+                {edit.flag &&
+                  (comment._id !== edit.commentId ||
+                    comment.user !== props.idUserLogged) && (
+                    <h2 style={{ marginRight: "1rem" }}>{comment.text}</h2>
+                  )}
+                {edit.flag && comment._id === edit.commentId && (
+                  <>
+                    <input
+                      ref={textUpdate}
+                      type="text"
+                      defaultValue={comment.text}
+                      style={{ marginRight: "1rem" }}
+                    ></input>{" "}
+                    <button className="bgIcon"
+                      style={{ cursor: "pointer" }}
+                      onClick={async () => {
+                        const updatedComments = await props.updateComment(
+                          props.itineraryID,
+                          comment._id,
+                          textUpdate.current.value
+                        );
+                        setComments(updatedComments.comments);
+                        setEdit({ flag: false });
+                      }}
+                    >
+                      ✅
+                    </button>
+                    <button className="bgIcon"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => setEdit({ flag: false })}
+                    >
+                      ❎
+                    </button>
+                  </>
+                )}
+
+                {localStorage.getItem("token") &&
+                  comment.user === props.idUserLogged && (
+                    <button className="bgIcon"
+                      style={{ color: "blue", cursor: "pointer" }}
+                      onClick={() => {
+                        Swal.fire({
+                          title: "Are you sure want to delete the comment?",
+                          showDenyButton: true,
+                          confirmButtonText: "Delete",
+                          denyButtonText: `Cancel`,
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            Swal.fire("¡Deleted!", "", "success");
+                            props
+                              .deleteComment(props.itineraryID, comment._id)
+                              .then((data) => setComments(data.comments));
+                          } else if (result.isDenied) {
+                            Swal.fire("The message was not deleted", "", "info");
+                          }
+                        });
+                      }}
+                    >
+                      ❌
+                    </button>
+                  )}
+                {localStorage.getItem("token") &&
+                  comment.user === props.idUserLogged && (
+                    <button className="bgIcon"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        setEdit({ commentId: comment._id, flag: true });
+                      }}
+                    >
+                      ✏
+                    </button>
+                  )}
+              </div>
+            </div>
+          ))}
+        {comments.length <= 0 && <h2 className="text-center textColor mt-5">No comment at the moment</h2>}
+      </div>
+      <div className="d-flex">                
+      <form className="formComments" onSubmit={handlerSubmit}>
+        <textarea
+          type="text"
+          className="fontInput"
+          cols="50"
+          rows="1"
+          placeholder="Enter your comment here"
+          ref={text}
+        />
+        <input style={{ cursor: "pointer" }} type="submit" className="ps-2 pe-2" value="Send" />
+      </form>
+      </div>
+    </div>
+  );
+};
 
 const mapDispatchToProps = {
-    addComment : citiesActions.addComment,
-    deleteComment : citiesActions.deleteComment,
-    updateComment: citiesActions.updateComment
+  addComment: citiesActions.addComment,
+  deleteComment: citiesActions.deleteComment,
+  updateComment: citiesActions.updateComment,
+  getActivitiesByItinerary: activitiesActions.getActivitiesByItinerary,
+};
+const mapStateToProps = (state) => ({
+  idUserLogged: state.userReducer.userId,
+  imgUser: state.userReducer.imgUrl,
+  userI: state.userReducer.userI
+});
 
-}
-const mapStateToProps = (state)=>({
-    idUserLogged: state.userReducer.userId,
-    imgUser: state.userReducer.imgUrl
-})
-
-export default connect(mapStateToProps,mapDispatchToProps) (Comment)
+export default connect(mapStateToProps, mapDispatchToProps)(Comment);

@@ -61,7 +61,7 @@ const userControllers = {
         if (samePass) {
           const { userName, imgUrl,_id } = userExists;
           const token = jwt.sign({ ...userExists }, process.env.SECRET_KEY);
-          console.log(token);
+       
 
           res.json({
             success: true,

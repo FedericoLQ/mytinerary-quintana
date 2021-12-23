@@ -6,7 +6,7 @@ const validator = require("../config/validator");
 const router = express.Router();
 const citiesController = require("../controllers/citiesController");
 const itineraryController = require("../controllers/itineraryController");
-
+const activitiesControllers = require("../controllers/activitiesControllers");
 const userController = require("../controllers/userController");
 
 router
@@ -43,18 +43,38 @@ router
     userController.authUser
   );
 
-router.route("/likes/itinerary/:id")
-.put(passport.authenticate("jwt", { session: false }), 
-itineraryController.cLike
-  
+router
+  .route("/likes/itinerary/:id")
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    itineraryController.cLike
+  );
+
+router
+  .route("/comments/itinerary/:id")
+  .post(
+    passport.authenticate("jwt", { session: false }),
+    itineraryController.createComment
   )
+  .get(itineraryController.getCommentsByItinerary);
 
-router.route('/comments/itinerary/:id')
-    .post(passport.authenticate('jwt', { session: false }), itineraryController.createComment)
-    .get(itineraryController.getCommentsByItinerary)
+router
+  .route("/comments/:commentID/itinerary/:id")
+  .delete(
+    passport.authenticate("jwt", { session: false }),
+    itineraryController.deleteComment
+  )
+  .put(
+    passport.authenticate("jwt", { session: false }),
+    itineraryController.updateComment
+  );
 
-router.route('/comments/:commentID/itinerary/:id')
-    .delete(passport.authenticate('jwt', { session: false }), itineraryController.deleteComment)
-    .put(passport.authenticate('jwt', { session: false }), itineraryController.updateComment)
+router
+.route("/activities")
+.post(activitiesControllers.addActivity);
+
+router
+  .route("/activities/:itineraryId")
+  .get(activitiesControllers.activitiesOfOneItinerary);
 
 module.exports = router;

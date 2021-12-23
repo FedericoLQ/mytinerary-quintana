@@ -53,17 +53,17 @@ const citiesActions = {
       }
     };
   },
-  addComment: (itineraryId, text,img) => async (dispatch) => {
+  addComment: (itineraryId, text,img, userName) => async (dispatch) => {
     try {
         const token = localStorage.getItem('token')
-        const res = await axios.post(`http://localhost:4000/api/comments/itinerary/${itineraryId}`, {text,img}, {
+        const res = await axios.post(`http://localhost:4000/api/comments/itinerary/${itineraryId}`, {text,img,userName}, {
             headers: { 'Authorization': 'Bearer ' + token }
         })
 
         return { succes: true, comments: res.data.comments }
 
     } catch (error) {
-        console.log(error);
+        return { succes: false, error: 'The user is not registered (You first must sign in)' }
     }
 },
 deleteComment: (itineraryId, commentId) => async (dispatch) => {

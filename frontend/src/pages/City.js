@@ -8,7 +8,9 @@ import { connect } from "react-redux";
 import citiesActions from "../redux/actions/citiesActions";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Swal from 'sweetalert2'
 import BasicModal from "../components/Modal";
+
 import Comment from '../components/Comment'
 class City extends React.Component {
   componentDidMount() {
@@ -17,7 +19,13 @@ class City extends React.Component {
   }
   likeHandler = async (idI) => {
     const res = await this.props.likeI(idI);
-    res.error && alert(res.error);
+    res.error &&  Swal.fire({
+      position: 'top-center',
+      icon: 'warning',
+      title: res.error ,
+      showConfirmButton: false,
+      timer: 1500
+    });
   };
   render() {
     return (
@@ -91,6 +99,7 @@ class City extends React.Component {
                                       View More
                                     </Accordion.Header>
                                     <Accordion.Body>
+                                      
                                      <Comment itineraryID={itinerary._id}/>
                                     </Accordion.Body>
                                   </Accordion.Item>
