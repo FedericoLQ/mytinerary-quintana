@@ -88,7 +88,8 @@ const Comment = (props) => {
                       src={comment.imgUrl}
                     />{" "}
                     <div>
-                     <p>{props.userI}</p>
+                     <p>{props
+                     .userI}</p>
                     <h4 className="textBg" style={{ marginRight: "1rem" }}>{comment.text}</h4>
                     </div>
                   </>

@@ -7,6 +7,7 @@ const userControllers = {
     let { email, password, userName, lastName, imgUrl, country, google } =
       req.body;
     try {
+      console.log(req.body);
       const userExists = await User.findOne({ email });
       if (userExists) {
         res.json({
