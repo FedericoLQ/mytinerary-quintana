@@ -1,4 +1,15 @@
 {
+  "name": "mytinerary-quintana",
+  "version": "1.0.0",
+  "main": "server.js",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Federico Lima Quintana",
+  "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",
     "bcryptjs": "^2.4.3",
@@ -12,24 +23,5 @@
     "passport": "^0.5.0",
     "passport-jwt": "^4.0.0",
     "react-google-login": "^5.2.2"
-  },
-  "name": "mytinerary-quintana",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/FedericoLQ/mytinerary-quintana.git"
-  },
-  "keywords": [],
-  "author": "Federico Lima Quintana",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/FedericoLQ/mytinerary-quintana/issues"
-  },
-  "homepage": "https://github.com/FedericoLQ/mytinerary-quintana#readme",
-  "description": ""
+  }
 }
