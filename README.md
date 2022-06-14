@@ -1,1 +1,1 @@
-Site: https://my-tinerary-limaquintana.herokuapp.com/cities
+Site: https://my-tinerary-limaquintana.herokuapp.com/
